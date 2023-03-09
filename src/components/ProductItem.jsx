@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import AppContext from '@context/AppContext.js';
 import '@styles/ProductItem.scss';
-import AddCart from "@icons/bt_add_to_cart.svg";
+import AddCartImage from "@icons/bt_add_to_cart.svg";
 
 const ProductItem = ({ product }) => {
-	const [cart, setcart] = useState([])	// asi manejamos eventos en react. dentro del metodo useState va el valor inicial del elemento, en este caso cart
-	const handleClick = () => {
-		setcart([])
+	const { addToCart } = useContext(AppContext)	// asi manejamos eventos en react. dentro del metodo useState va el valor inicial del elemento, en este caso cart
+	const handleClick = (item) => {
+		addToCart([item])
 	}
 	return (
 		<div className="ProductItem">
@@ -15,8 +16,8 @@ const ProductItem = ({ product }) => {
 					<p>${product.price}</p>
 					<p>{product.title}</p>
 				</div>
-				<figure onClick={handleClick}>
-					<img src={AddCart} alt="" />
+				<figure onClick={() => handleClick(product)}>
+					<img src={AddCartImage} alt="" />
 				</figure>
 			</div>
 		</div>
