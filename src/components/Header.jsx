@@ -14,6 +14,7 @@ const Header = () => {
 	const handleToggle = () => {
 		setToggle(!toggle)
 	}
+    
     return (
         <nav>
             <img src={menu} alt="menu" className="menu" />
@@ -53,7 +54,7 @@ const Header = () => {
                 </ul>
             </div>
             { toggle ? <Menu /> : <></>}
-            { toggleOrders && <MyOrder /> }
+            { toggleOrders && <MyOrder toggleOrders={toggleOrders} setToggleOrders={setToggleOrders}/> }
         </nav>
     );
 }
